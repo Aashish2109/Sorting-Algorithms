@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(int *arr, int start, int end)
+int merge(int *arr, int start, int end)
 {
     int mid = start + (end - start) / 2;
     int len1 = mid - start + 1;
@@ -21,33 +21,33 @@ void merge(int *arr, int start, int end)
         second[i] = arr[mainarrayindex++];
     }
 
-    int index1=0;
-    int index2=0;
-    mainarrayindex=start;
-    while(index1<len1 && index2<len2)
+    int index1 = 0;
+    int index2 = 0;
+    mainarrayindex = start;
+    while (index1 < len1 && index2 < len2)
     {
-        if(first[index1]<second[index2]){
-            arr[mainarrayindex++]=first[index1++];
+        if (first[index1] < second[index2])
+        {
+            arr[mainarrayindex++] = first[index1++];
         }
         else
         {
-            arr[mainarrayindex++]=second[index2++];
+            arr[mainarrayindex++] = second[index2++];
         }
     }
-    while(index1<len1)
+    while (index1 < len1)
     {
-        arr[mainarrayindex++]=first[index1++];
+        arr[mainarrayindex++] = first[index1++];
     }
-    while(index2<len2)
+    while (index2 < len2)
     {
-        arr[mainarrayindex++]=second[index2++];
+        arr[mainarrayindex++] = second[index2++];
     }
 }
 
-
-
 void mergeSort(int *arr, int start, int end)
 {
+    int inv=0;
     if (start >= end)
     {
         return;
@@ -56,18 +56,19 @@ void mergeSort(int *arr, int start, int end)
     mergeSort(arr, start, mid);
     mergeSort(arr, mid + 1, end);
     merge(arr, start, end);
+    
 }
 
 int main()
 {
-    int arr[] = {5, 4, 3, 2, 1};
-    int size = 5;
+    int arr[] = {3, 2, 1};
+    int size = 13;
     mergeSort(arr, 0, size - 1);
-    for(int i=0;i<size;i++)
+    for (int i = 0; i < size; i++)
     {
-        cout<<arr[i]<<" ";
+        cout << arr[i] << " ";
     }
 }
 
-//Output
-//1 2 3 4 5 
+// Output
+// 1 2 3 4 5
